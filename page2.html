@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href='style.css' rel='stylesheet'>
+	<meta charset='UTF-8'>
+</head>
+<body>
+	<div class='wrapper'>
+		<header>
+				<ul class='trek'>
+					<li class='trek__box trek__box_enabled'>
+						<a href='page1.html' class='trek__href'>1
+						<div class='trek__name'>КОРЗИНА</div>
+						</a>
+					</li>
+					<li class='trek__box  trek__box_active'>
+						<a href='page2.html' class='trek__href'>2
+						<div class='trek__name'>ОПЛАТА</div>
+						</a>
+					</li>
+					<li class='trek__box'>
+						<a href='page3.html' class='trek__href'>3
+						<div class='trek__name'>ДОСТАВКА</div>
+						</a>
+					</li>
+					<li class='trek__box'>
+						<a href='#' class='trek__href '>4
+						<div class='trek__name'>ЗАВЕРШЕНО</div>
+						</a>
+					</li>
+				</ul>
+		</header>
+		<section>
+			<div class='check'>
+				<label class='check__label'>
+					<input type='radio' name='check' class='radio' checked>
+					<div class='radio__view'></div>
+					<div class='radio__value'>КАРТА</div>
+				</label>
+				<label class='check__label'>
+					<input type='radio' name='check' class='radio'>
+					<div class='radio__view'></div>
+					<div class='radio__value'>PAYPAL</div>
+				</label>
+			</div>
+			<div class='card card__front'>
+				<input type='text' placeholder="Номер карты" class='input input__card-number'>
+				<input type='text' placeholder="Месяц" class='input input__card-date input__card-date_position_left'>
+				<input type='text' placeholder="Год" class='input input__card-date input__card-date_position_right'>
+				<input type='text' placeholder="Имя владельца"  class='input input__card-name'>
+				<figure class='card__figure'>
+					<img src="img/master-card.svg" class="card__master">
+					<img src="img/visa.svg" class="card__visa">
+				</figure>
+			</div>
+			<div class='card card__outside'>
+				<div class='card__magnit'></div>
+				<input type='text' placeholder="CVV"  class='input input__card-cvv'>
+				<span class='card__text-box'>Код на обратной стороне</span>
+			</div>
+		</section>
+		<footer class='footer'>
+			<input type='button' class='button button__back' value='Вернуться назад'>
+			<!-- УБРАТЬ ССЫЛКУ -->
+			<a href='page3.html'>
+			<input type='button' class='button button__forward button_letter-spasing' value='Оплатить'>
+			</a>
+		</footer>
+	</div>
+</body>
+</html>
