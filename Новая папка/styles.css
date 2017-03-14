@@ -1,0 +1,451 @@
+
+/* Подключаем шрифты */
+@font-face {
+    font-family: Lobster;
+    src: url('Font/Lobster-Regular.eot'); /* IE9 */
+    src: url('Font/Lobster-Regular.eot?') format('eot'), /*IE6-IE8*/
+    url('Font/Lobster-Regular.woff') format('woff'), /*Современные браузеры*/
+    url('Font/Lobster-Regular.ttf') format('truetype'), /*Safari? android, ios*/
+    url('Font/Lobster-Regular.svg#svgGraublauweb') format('svg'); /*iOS*/
+    font-size: 12pt;
+    font-weight: normal;
+  }
+
+@font-face {
+    font-family: Neucha;
+    src: url('Font/Neucha.eot'); /* IE9 */
+    src: url('Font/Neucha.eot?') format('eot'), /*IE6-IE8*/
+    url('Font/Neucha.woff') format('woff'), /*Современные браузеры*/
+    url('Font/Neucha.ttf') format('truetype'), /*Safari? android, ios*/
+    url('Font/Neucha.svg#svgGraublauweb') format('svg'); /*iOS*/
+    font-size: 12pt;
+    font-weight: normal;
+  }
+
+@font-face {
+    font-family: gothice;
+    src: url('Font/gothice.eot'); /* IE9 */
+    src: url('Font/gothice.eot?') format('eot') /*IE6-IE8*/
+    url('Font/gothice.woff') format('woff'), /*Современные браузеры*/
+    url('Font/gothice.ttf') format('truetype'), /*Safari? android, ios*/
+    url('Font/gothice.svg#svgGraublauweb') format('svg'); /*iOS*/
+    font-size: 12pt;
+    font-weight: normal;
+  }
+
+@font-face {
+    font-family: cuprum_regular;
+    src: url('Font/cuprum_regular.eot'); /* IE9 */
+    src: url('Font/cuprum_regular.eot?') format('eot'), /*IE6-IE8*/
+    url('Font/cuprum_regular.woff') format('woff'), /*Современные браузеры*/
+    url('Font/cuprum_regular.ttf') format('truetype'), /*Safari? android, ios*/
+    url('Font/cuprum_regular.svg#svgGraublauweb') format('svg'); /*iOS*/
+    font-size: 12pt;
+    font-weight: normal;
+  }
+
+@font-face {
+    font-family: fontin_sans_cr_sc_regular;
+    src: url('Font/fontin_sans_cr_sc_regular.eot'); /* IE9 */
+    src: url('Font/fontin_sans_cr_sc_regular.eot?') format('eot'), /*IE6-IE8*/
+    url('Font/fontin_sans_cr_sc_regular.woff') format('woff'), /*Современные браузеры*/
+    url('Font/fontin_sans_cr_sc_regular.ttf') format('truetype'), /*Safari? android, ios*/
+    url('Font/fontin_sans_cr_sc_regular.svg#svgGraublauweb') format('svg'); /*iOS*/
+    font-size: 12pt;
+    font-weight: normal;
+  }    
+
+/*Тело*/
+body{
+	background:#555555;
+	color:#FFFFFF;
+  font-family:fontin_sans_cr_sc_regular;
+  font-size: 12pt;
+  /*Scrollbar Полоса прокрутки*/
+}
+
+
+.colorSet {
+  padding: 15px;
+  color: #FFFFFF;
+  text-align: center;
+  top:20px;
+  font-size: 14pt;
+  text-shadow:5px 5px 2px #000000;
+  transition: .5s;}
+#color2:checked ~ .colorSet {color: #FFFF00;}
+#color3:checked ~ .colorSet {color: #00BCD4;}
+#color4:checked ~ .colorSet {color: #5C66E8;}
+#color5:checked ~ .colorSet {color: #11BB10;}
+#color6:checked ~ .colorSet {color: #B911B9;}
+#color7:checked ~ .colorSet {color: #CC2010;}
+#color8:checked ~ .colorSet {color: #408080;}
+#color9:checked ~ .colorSet {color: #000000;}
+
+
+#bolder:checked ~ .colorSet {font-weight:bold;}
+#italic:checked ~ .colorSet {font-style:italic;}
+#Arial:checked ~ .colorSet {font-family: arial;}
+#Timens:checked ~ .colorSet {font-family: Timens;}
+#gothice:checked ~ .colorSet {font-family: gothice;}
+#cuprum_regular:checked ~ .colorSet {font-family: cuprum_regular;}
+#Neucha:checked ~ .colorSet {font-family: Neucha;}
+#Lobster:checked ~ .colorSet {font-family: Lobster;}
+
+
+#italic {font-style:italic;}
+#Arial {font-family: arial;}
+#Timens {font-family: Timens;}
+#gothice {font-family: gothice;}
+#cuprum_regular {font-family: cuprum_regular;}
+#Neucha {font-family: Neucha;}
+#Lobster {font-family: Lobster;}
+
+.font{
+  display: none;
+}
+.label{
+  transition: .5s;
+  color:#FFFFFF;
+  cursor: pointer;
+  text-shadow:5px 5px 5px #000000;
+  /*display: inline-block;*/
+}
+.label:hover{
+  color:#DCB317;
+}
+
+#Arial:checked + .label {color: #DCB317; text-decoration:underline; font-weight:600;}
+#Timens:checked + .label {color: #DCB317; text-decoration:underline;font-weight:600;}
+#gothice:checked + .label {color: #DCB317; text-decoration:underline;font-weight:600;}
+#cuprum_regular:checked + .label {color: #DCB317; text-decoration:underline;font-weight:600;}
+#Neucha:checked + .label {color: #DCB317; text-decoration:underline;font-weight:600;}
+#Lobster:checked + .label {color: #DCB317; text-decoration:underline;font-weight:600;}
+
+/* Выбор цвета */
+
+.regular-radio { /* группа переключателей цветов*/
+display: none;
+}
+
+.labelColor {
+  position:relative;
+  cursor: pointer;
+  display: inline-block;
+  border: 1px solid #333333; /* цвет границы*/
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  margin: 3px;
+  box-shadow:
+      0 1px 0 rgba(255,255,255,.2),
+      0 0 0 2px rgb(60, 60, 60),
+      0 5px 3px rgba(5,5,5,.5),
+      0 -5px 1px rgba(255,255,255,.2),
+      5px 5px 3px rgba(0,0,0,.5),
+      -5px 0px 1px rgba(255,255,255,.2);
+}
+
+.regular-radio:checked+.labelColor:after {
+  position:absolute;
+  display:table-cell;
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  background: #FFFFFF;
+  top:3px;
+  left:3px;
+  box-shadow:
+    inset  3px  3px 2px -5px rgba(51,51,51,.2),
+    inset  -3px -3px 2px 5px rgba(0,0,0,.7);
+}
+
+.labelColor:hover {
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.2),
+    0 0 0 3px rgb(60, 60, 60),
+    0 7px 5px rgba(5,5,5,.5),
+    0 -7px 2px rgba(255,255,255,.2),
+    7px 7px 5px rgba(0,0,0,.5),
+    -7px 0px 1px rgba(255,255,255,.2);
+}
+
+.labelColor:active::after {
+  box-shadow:
+    0 0 0 0 rgba(51,51,51,1);
+}
+
+#color1 { background-color: #FFFFFF;}
+#color2 { background-color: #FFFF00;}
+#color3 { background-color: #00BCD4;}
+#color4 { background-color: #5C66E8;}
+#color5 { background-color: #11BB10;}
+#color6 { background-color: #B911B9;}
+#color7 { background-color: #CC2010;}
+#color8 { background-color: #408080;}
+#color9 { background-color: #000000;}
+
+
+/*жирность и курсив*/
+
+#bolder {display: none;}
+[for="bolder"], [for="italic"]{
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 10px;
+  padding: 10px;
+  border-radius: 20px;
+  line-height: 10px;
+  color: #cccccc;
+  text-shadow: 1px 1px 0px rgba(255,255,255,.15);
+  background: rgb(71, 71, 71);
+  box-shadow:
+       0 1px 0 rgba(255,255,255,.2),
+       inset 0 0 0 5px rgb(60, 60, 60),
+       inset 0 6px 6px rgba(0,0,0,.5),
+       inset 0 -6px 1px rgba(255,255,255,.2);
+  cursor: pointer;
+}
+[for="bolder"]:before {
+  content: "Ж";
+  position: absolute;
+  right: 13px;
+  font-weight:bolder;
+}
+[for="bolder"]:after, [for="italic"]:after {
+  content: "";
+  position: absolute;
+  left: 5px; top: 5px;
+  display: block;
+  width: 35px;
+  height: 20px;
+  border-radius: 50px;
+  background: #ccc linear-gradient(#fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  transition: .5s;
+}
+#bolder:checked ~ [for="bolder"]:after {
+  left: 35px;
+}
+
+#italic {display: none;
+position: relative;
+right: 60px;
+top: 20px;}
+
+[for="italic"]:before {
+  content: "I";
+  position: absolute;
+  right: 18px;
+  font-style:italic;
+}
+
+#italic:checked ~ [for="italic"]:after {
+  left: 35px;}
+
+.label1 {
+  text-align: left;
+}
+
+
+
+.Style{
+  position: absolute;
+  bottom: 10px;
+  width: 190px;
+  height: 300px;
+  text-align: center;
+  border: 1px solid #000000; /* цвет границы*/
+  border-radius: 30px;
+  background: #333333;
+}
+
+#MoreTxt {
+  font-family:fontin_sans_cr_sc_regular;
+  position: absolute;
+  bottom: 60px;
+  left:210px;
+  width: 450px;
+  height: 234px;
+  padding: 8px 20px 8px 8px;
+  border: 1px solid #000000; /* цвет границы*/
+  border-radius: 30px;
+  background: #333333;
+  overflow: hidden;
+ }
+
+.chat{
+  position: absolute;
+  bottom: 10px;
+  left: 50%; /* Положение слоя от левого края */
+  margin-left: -426px; /* Отступ слева, включает padding и border */
+  padding:10px;
+  width: 852px;
+  height: 300px;
+  border: 1px solid #000000; /* цвет границы*/
+  border-radius: 30px;
+  background: #555555;
+  overflow: hidden;
+}
+
+.chat a { /*Ссылки для ников*/
+  color:inherit;
+}
+
+/*Ввод текста*/
+.inputTxt {
+  position: absolute;
+  left:210px;
+  bottom: 10px;
+  width: 450px;
+  min-height: 20px;
+  border: 1px solid #000000; /* цвет границы*/
+  border-radius: 25px;
+  background: #333333;
+  padding:10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Поле для ввода текста */
+.MesTxt {
+  font-family:fontin_sans_cr_sc_regular;
+  background: #555555;
+  padding-left:3px;
+  color:#FFFFFF;
+  border: 1px solid #000000; 
+  border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+  height: 20px;
+  outline: none; 
+  font-size: 12px;
+  width: 235px;
+  box-shadow:
+      0 1px 0 rgba(255,255,255,.2),
+      0 0 0 2px rgb(60, 60, 60),
+      0 5px 3px rgba(5,5,5,.5),
+      0 -5px 1px rgba(255,255,255,.2),
+      5px 5px 3px rgba(0,0,0,.5),
+      -5px 0px 1px rgba(255,255,255,.2);
+}
+
+.MesTxt::-webkit-input-placeholder {
+  font-size: 11px;
+  }
+.MesTxt::-moz-input-placeholder {
+  font-size: 11px;
+  }
+.MesTxt::-ms-input-placeholder {
+  font-size: 11px;
+  }
+
+.MesTxt:focus{
+  background: #333333;
+}
+
+.nicList { /*зона видимости активных ников*/
+position: absolute;
+  bottom: 10px;
+  left: 700px;
+  width: 160px;
+  height: 300px;
+  text-align: center;
+  border: 1px solid #000000; /* цвет границы*/
+  border-radius: 30px;
+  background: #333333;
+  overflow: hidden;
+}
+
+
+/* Кнопка отправить */
+.Otpravit {
+  font-family:fontin_sans_cr_sc_regular;
+  height: 22px;
+  width: 100px;
+  background: #AAAAAA;
+  font-weight: bold;
+  color:#000000;
+  border: 1px solid #000000; //цвет рамки
+  border: outset 3px #FFFFFF;
+  border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow:
+      0 1px 0 rgba(255,255,255,.2),
+      0 0 0 2px rgb(60, 60, 60),
+      0 5px 3px rgba(5,5,5,.5),
+      0 -5px 1px rgba(255,255,255,.2),
+      5px 5px 3px rgba(0,0,0,.5),
+      -5px 0px 1px rgba(255,255,255,.2);
+
+}
+.Otpravit:hover { 
+background: #888888; 
+box-shadow:0 1px 0 rgba(0,255,255,.2),
+      0 5px 3px rgba(5,5,5,.5),
+      0 -5px 1px rgba(255,255,255,.2),
+      5px 5px 3px rgba(0,0,0,.5),
+      -5px 0px 1px rgba(255,255,255,.2);
+}
+.Otpravit:active { 
+background: #DDDDDD; 
+box-shadow:0 1px 0 rgba(0,255,255,.2),
+      0 2px 3px rgba(5,5,5,.5),
+      0 -5px 1px rgba(255,255,255,.2),
+      2px 2px 3px rgba(0,0,0,.5),
+      -2px 0px 1px rgba(255,255,255,.2);
+}
+
+.time {
+  font-size: 11px;
+  font-family:fontin_sans_cr_sc_regular;
+}
+
+.system {
+  color:#DCB317;
+  font-family:fontin_sans_cr_sc_regular;
+  font-size: 12px;
+}
+
+
+.nic {
+  font-size: 14px;
+  font-weight: bold;
+  color: #E5F330;
+}
+.nicList .nic{
+  position: relative;
+  font-size: 14px;
+  left:14px;
+  float:left; 
+  overflow:hidden;
+  display: inline-block;
+  clear: both;
+}
+.nicList .nic:hover{
+  color: #F50330;
+  cursor: pointer;
+}
+.nicList .nic:active{
+  color: #F0F3F0;
+  cursor: pointer;
+}
+
+
+.nicName {
+  padding: 2px;
+  min-width: 60px;
+  max-width: 120px;
+  max-height: 18px;
+  overflow: hidden;
+  float:left;
+  text-align: right;
+}
+
+
+
