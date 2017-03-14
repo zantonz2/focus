@@ -1,19 +1,3 @@
-
-/*var produkt=[{
-	name:'СТАНДАРТНЫЙ ПАКЕТ',
-	time:'08 апреля 2012',
-	bg:'shot__baground_shot1'
-	},
-	{
-	name:'НОВЫЙ ЦФТ-БАНК',
-	time:'09 сентября 2016',
-	bg:'shot__baground_shot2'
-	},
-	{
-	name:'КАТАЛОГ РАЗРАБОТОК',
-	time:'03 марта 2015',
-	bg:'shot__baground_shot3'
-	}];*/
 	
 var obj_compliance = {
 "87b370e0-31e5-4a90-b447-c1c35d8ea568":"shot__baground_shot1",
@@ -24,55 +8,6 @@ var obj_compliance = {
 "b0f94a6e-86c9-4d9b-8df6-0dc5e0152edc":"shot__baground_shot3",
 "2ca44ad5-b06b-41e8-912d-fd7070390c49":"shot__baground_shot1"
 }
-
-
-/*function createHref(elem,content,i){
-		var Col3=createBlock('div','col3');
-		var fig=createBlock('figure','figure');
-		var shot=createBlock('div','shot shot__size_med '+content[i].bg);
-		var figcap=createBlock('figcaption', 'figcaption main__hover_red');
-		figcap.innerHTML=content[i].name;
-		var time=createBlock('time','time');
-		time.innerHTML=content[i].time;
-		fig=Col3.appendChild(fig);
-		fig.appendChild(shot);
-		figcap=fig.appendChild(figcap);
-		figcap.appendChild(time);
-		elem.appendChild(Col3);
-}
-
-
-
-
-function rndBox(block,content,delay) {
-	fillBox(block, content);
-		setInterval(function(){
-			content.sort(rand);
-			clearBox(block);
-			fillBox(block, content);
-		},delay);
-}
-
-
-var moreProdukt=generateArray(produkt,7).sort(rand);
-
-//console.log(moreProdukt);
-
-
-function rand(){
-		return (Math.random()<0.5)? -1: 1;
-	};
-	
-
-function generateArray(arrObj, leng) {
-	var arr=[], i=0;
-	var lengthArrObj=arrObj.length;
-	for (i=0;i<leng;i++) {
-		arr.push(arrObj[parseInt(Math.random()*(lengthArrObj))]);
-	}
-	return arr;
-}*/
-
 
 var carusel=(function(){
 
@@ -85,12 +20,8 @@ var carusel=(function(){
 		i=(i===(caruselPoint.length-1))?(caruselPoint.length-2):i;
 		var rowCol3=document.querySelector(block);
 		for (var j=0; j<3; j++) {
-		//	console.log(j);
 			f(rowCol3,content,i-1+j);
-
 		}
-		//var arrows=document.querySelector('.carusel__arrow')
-		
 	};
 
 	function createBlock(tag, cl) {
@@ -132,22 +63,6 @@ var carusel=(function(){
 		}
 	};
 
-
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'app/app_packages.json', true);
-	xhr.send();
-	xhr.onreadystatechange=function(e) {
-		if (xhr.readyState===XMLHttpRequest.DONE) {
-			var result=JSON.parse(xhr.responseText);
-			//console.log('result='+result);
-			CaruselFillBox('.row-3col', result, createBoxProduct);
-			createCarusel('.carusel',result);
-			
-		}
-	}
-
-	//console.log(func);
-	//CaruselFillBox('.row-3col', content, createBoxProduct),
 	
 	function createCarusel(inBlock, content){
 		var carusel=document.querySelector(inBlock);
@@ -218,15 +133,28 @@ var carusel=(function(){
 		}
 	}
 
-return {
-
+	return {
+		create:function(){
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', 'app/app_packages.json', true);
+			xhr.send();
+			xhr.onreadystatechange=function(e) {
+				if (xhr.readyState===XMLHttpRequest.DONE) {
+					console.log(xhr.responseText);
+					var result=JSON.parse(xhr.responseText);
+					//console.log('result='+result);
+					CaruselFillBox('.row-3col', result, createBoxProduct);
+					createCarusel('.carusel',result);
+				}
+		}
+	}
 }
 }());
 
 
 
 /*---------rnd list--------------*/
-var list= [
+/*var list= [
 'Стандартный пакет',
 'Новый ЦФТ-Банк',
 'Cash Management',
@@ -242,28 +170,45 @@ var list= [
 'Финансовый мониторинг',
 'Депозиты и вклады',
 'Инвестиции'
-]
+];*/
 
 //var newList=generateArray(list,20).sort(rand);
 //console.log(newList);
-function fillBox(block, content,f) {
-	var length=content.length;
-	var el=document.querySelector(block);
-	for (var i=0; i<length; i++) {
-		f(el,content,i);
+
+var catalogList=(function(){
+	
+	function fillBox(block, content,f) {
+		var length=content.length;
+		var el=document.querySelector(block);
+		for (var i=0; i<length; i++) {
+			f(el,content,i);
+		}
 	}
-}
 
-function createList(elem,content,i){
-	var ul=createBlock('ul','aside__ul');
-	var li=createBlock('li','aside__list');
-	var a=createBlock('a','aside__href main__hover_red main__hover_underline');
-	a.setAttribute('href','#');
-	a.innerHTML=content[i];
-	li.appendChild(a);
-	ul.appendChild(li);
-	elem.appendChild(li);
-}
-
-
+	function createList(elem,content,i){
+		var ul=createBlock('ul','aside__ul');
+		var li=createBlock('li','aside__list');
+		var a=createBlock('a','aside__href main__hover_red main__hover_underline');
+		a.setAttribute('href','#');
+		a.innerHTML=content[i];
+		li.appendChild(a);
+		ul.appendChild(li);
+		elem.appendChild(li);
+	}
+	return {
+		create:function(){
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', 'app/apps_list.json', true);
+			xhr.send();
+			xhr.onreadystatechange=function(e) {
+				if (xhr.readyState===XMLHttpRequest.DONE) {
+					console.log(xhr.responseText);
+					var result=JSON.parse(xhr.responseText);
+					//console.log('result='+result);
+					fillBox('.container__aside', result, createList);
+				}
+			}
+		}
+	}
+}());
 
