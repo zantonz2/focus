@@ -136,7 +136,7 @@ var carusel=(function(){
 	return {
 		create:function(){
 			var xhr = new XMLHttpRequest();
-			xhr.open('GET', 'app/app_packages.json', true);
+			xhr.open('GET', 'api/app_packages.json', true);
 			xhr.send();
 			xhr.onreadystatechange=function(e) {
 				if (xhr.readyState===XMLHttpRequest.DONE) {
@@ -177,7 +177,8 @@ var carusel=(function(){
 //console.log(newList);
 
 var catalogList=(function(){
-	
+	var createBlock=carusel.createBlock;
+
 	function fillBox(block, content,f) {
 		var length=content.length;
 		var el=document.querySelector(block);
@@ -187,23 +188,60 @@ var catalogList=(function(){
 	}
 
 	function createList(elem,content,i){
-		var ul=carusel.createBlock('ul','aside__ul');
-		var li=carusel.createBlock('li','aside__list');
-		var a=carusel.createBlock('a','aside__href main__hover_red main__hover_underline');
-		a.setAttribute('href','#');
+		var ul=createBlock('ul','aside__ul');
+		var li=createBlock('li','aside__list');
+		var a=createBlock('a','aside__href main__hover_red main__hover_underline');
+		//a.setAttribute('href','#');
 		a.innerHTML=content[i].title;
+		a.onclick=function(){drawContainer(content[i].id)};
 		li.appendChild(a);
 		ul.appendChild(li);
 		elem.appendChild(li);
 	}
+
+	function drawContainer(id) {
+		var section=document.querySelector('.container__content');
+		console.log('old='+section.data+' new='+id);
+		section.innerHTML='';
+		section.data=id;
+		var title=createBlock('div','title title__size_med');
+		var boxLeft=createBlock('div','content__box-left');
+		var time=createBlock('time','time');
+		var pDesc=createBlock('p','text');
+		var pRequire=createBlock('p','text');
+		var titleRequire=createBlock('span','span__color_darkgrey');
+		titleRequire.innerHTML='Требования:';
+		
+		
+		boxLeft.appendChild(time);
+		boxLeft.appendChild(pDesc);
+		boxLeft.appendChild(pRequire);
+		pRequire.appendChild(titleRequire);
+		section.appendChild(boxLeft);
+		
+		var boxRight=createBlock('div','content__box-right');
+		var shot=createBlock('div','shot shot__size_big shot__baground_shot2');
+		var btnIn=createBlock('input', 'button button__app button_letter-spasing');
+		btnIn.value='В корзину';
+		btnIn.type='button';
+
+		boxRight.appendChild(shot);
+		boxRight.appendChild(btnIn);
+		section.appendChild(boxRight);
+
+		pDesc.textContent='mdmdmdmdmdmd';
+		pRequire.innerHTML+='1+23+++2222';
+		console.log(section.data);
+	};
+
 	return {
 		create:function(){
 			var xhr = new XMLHttpRequest();
-			xhr.open('GET', 'app/apps_list.json', true);
+			xhr.open('GET', 'api/apps_list.json', true);
 			xhr.send();
 			xhr.onreadystatechange=function(e) {
 				if (xhr.readyState===XMLHttpRequest.DONE) {
-					console.log(xhr.responseText);
+					//console.log(xhr.responseText);
 					var result=JSON.parse(xhr.responseText);
 					//console.log('result='+result);
 					fillBox('.container__aside', result, createList);

@@ -4,7 +4,7 @@
   "description": "my project",
   "main": "app.js",
   "scripts": {
-    "test": "\"echo \\\u001b[\u001b[Co\\\"Error:no test specified\\\"&& exit 1\""
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
