@@ -1,0 +1,22 @@
+{
+  "name": "focus",
+  "version": "1.0.0",
+  "description": "my project",
+  "main": "app.js",
+  "scripts": {
+    "test": "\"echo \\\u001b[\u001b[Co\\\"Error:no test specified\\\"&& exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zantonz2/focus.git"
+  },
+  "author": "zantonz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zantonz2/focus/issues"
+  },
+  "homepage": "https://github.com/zantonz2/focus#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.8"
+  }
+}
