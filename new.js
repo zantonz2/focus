@@ -146,9 +146,10 @@ var carusel=(function(){
 					CaruselFillBox('.row-3col', result, createBoxProduct);
 					createCarusel('.carusel',result);
 				}
-		}
+			}
+		},
+		createBlock:createBlock,
 	}
-}
 }());
 
 
@@ -186,11 +187,11 @@ var catalogList=(function(){
 	}
 
 	function createList(elem,content,i){
-		var ul=createBlock('ul','aside__ul');
-		var li=createBlock('li','aside__list');
-		var a=createBlock('a','aside__href main__hover_red main__hover_underline');
+		var ul=carusel.createBlock('ul','aside__ul');
+		var li=carusel.createBlock('li','aside__list');
+		var a=carusel.createBlock('a','aside__href main__hover_red main__hover_underline');
 		a.setAttribute('href','#');
-		a.innerHTML=content[i];
+		a.innerHTML=content[i].title;
 		li.appendChild(a);
 		ul.appendChild(li);
 		elem.appendChild(li);

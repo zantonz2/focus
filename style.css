@@ -810,7 +810,7 @@ background: url(img/education-icon.svg);
 .aside__href {
 	color: inherit;
 	display: inline-block;
-	margin-left: -1rem;
+	//margin-left: -1rem;
 }
 
 .aside__list:nth-child(2n) {
