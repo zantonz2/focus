@@ -660,8 +660,8 @@ a {
 .container__aside {
 	float:left;
 	width: 23.375rem;
-	min-height: 55.25rem;
-	padding:43px 30px 0 17px;
+	//min-height: 55.25rem;
+	padding:43px 30px 43px 23px;
 	background-color: #ffffff;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
 }
@@ -671,7 +671,7 @@ a {
 	float:right;
 	background-color: #ffffff;
 	width: 48.25rem;
-	max-height: 55.25rem;
+	//min-height: 55.25rem;
 	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.18);
 	padding:46px 41px 25px;
 }
@@ -887,6 +887,19 @@ background: url(img/education-icon.svg);
 
 .content__box-right {
 	float:right;
+}
+
+.content__box-bottom {
+	padding-top: 35px;
+}
+
+.content__list {
+	margin-left: 1.125rem;
+	clear: both;
+	font-size: 1.125rem;
+	padding-top: 2rem;
+	line-height: 1.72;
+  	color: #4d5762;
 }
 
 
