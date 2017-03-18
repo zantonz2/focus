@@ -250,4 +250,3 @@ var catalogList=(function(){
 		}
 	}
 }());
-
