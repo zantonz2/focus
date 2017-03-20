@@ -213,7 +213,7 @@ var catalogList=(function(){
 
 		var section=document.querySelector('.container__content');
 
-		console.log('old='+section.data+' new='+id);
+		//console.log('old='+section.data+' new='+id);
 		section.innerHTML='';
 		section.data=id;
 		
@@ -274,7 +274,7 @@ var catalogList=(function(){
 				if (xhr.readyState===XMLHttpRequest.DONE) {
 					//console.log(xhr.responseText);
 					var result=JSON.parse(xhr.responseText);
-					console.log('result='+result);
+					//console.log('result='+result);
 					for (var i = 0; i < result.length; i++) {
 						if (result[i].id===id) {
 							title.textContent=result[i].title;
@@ -283,6 +283,14 @@ var catalogList=(function(){
 							pRequire.innerHTML+=result[i].requirements;
 							shot.className+=obj_compliance[result[i].guid];
 							//console.log(typeof(result[i].features));
+							//btnIn.onclick=basket.add(result[i]);
+							btnIn.onclick=(function(res){
+								return function(){
+									//console.log(this);
+									basket.add(res);
+
+								}
+							})(result[i])
 							//console.log(result[i].features);
 							createLiBoxBottom(result[i].features, ul);
 						}
@@ -290,7 +298,7 @@ var catalogList=(function(){
 				}
 			}
 
-		console.log(section.data);
+		//console.log(section.data);
 	};
 
 	return {
@@ -310,3 +318,75 @@ var catalogList=(function(){
 		drawApp:drawApp,
 	}
 }());
+
+
+function basket() {
+	this.product=[];
+	this.add=function(result) {
+		//console.log(this.product.length);
+		var matches=false;
+			for (var i = 0; i < this.product.length; i++) {
+				if (this.product[i].id===result.id) {
+					matches=true;
+				}
+			}
+		if (!matches) this.product.push(result);  
+		//console.log('product'+this.product);
+	}
+
+	this.init=function(blok){
+		if (document.readyState === "complete") {
+			createBasket(blok);
+		} else {
+			window.addEventListener( "DOMContentLoaded", createBasket);
+		}
+
+		function createBasket(){
+			var elem=document.querySelector(blok);
+			console.log(elem);
+			var div=document.createElement(div);
+			div.textContent='Корзина';
+			div.onclick=basketClick.bind(basket);			
+			elem.appendChild(div);
+			div.style.cursor='pointer';
+		}
+	}
+
+	function basketClick(){
+		console.log('rkbr');
+		var tmp=document.querySelector('.page1');
+		var clonePage1=tmp.content.cloneNode(true);
+			var row=clonePage1.querySelector('.tmp__table_rows');
+			var total=0;
+			for (var i = 0; i < this.product.length; i++) {
+				var cloneRow=row.content.cloneNode(true);
+				var cell=cloneRow.querySelectorAll('td');
+				cell[0].textContent=this.product[i].title;
+				cell[1].textContent=this.product[i].price/100;
+				cell[2].textContent=this.product[i].price/100;
+				clonePage1.querySelector('.table').appendChild(cloneRow);
+				total+=this.product[i].price; // cent
+			}
+		//var name=clone.querySelector('.table__rows .table__column_first');
+		//name.innerHTML='sadaewf';
+		//totalCent.textContent=parseFloat(total/100);
+		var totalPrice=clonePage1.querySelector('.total__price');
+
+		var totalInt=Math.floor(total / 100);
+		var totalFloor=total-totalInt*100;
+
+		totalPrice.innerHTML=totalInt
+			+'<span class="total__cent">'
+			+totalFloor
+			+'</span>';
+		var body=document.querySelector('body');
+		body.innerHTML='';
+		body.className='';
+		//var name=clone.querySelector('.table__rows .table__column_first');
+		//name.innerHTML='sadaewf';
+		body.appendChild(clonePage1);
+	};
+
+}
+
+

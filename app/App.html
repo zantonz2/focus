@@ -2,6 +2,7 @@
 <html>
 <head>
 	<link href='style.css' rel='stylesheet'>
+	<link rel="import" href="page1.html">
 	<meta charset='UTF-8'>
 	<script src='js/new.js'></script>
 </head>
@@ -95,7 +96,72 @@
 <script type="text/javascript">
 	catalogList.drawApp(1);
 	catalogList.create();
+	var basket=new basket;
+	basket.init('.header__box');
 </script>
+
+<template class='red'>
+	<div class='class'></div>
+</template>
+
+<template class='page1'>
+	<div class='wrapper'>
+		<header>
+				<ul class='trek'>
+					<li class='trek__box trek__box_active'>
+						<a href='page1.html' class='trek__href'>1
+						<div class='trek__name'>КОРЗИНА</div>
+						</a>
+					</li>
+					<li class='trek__box'>
+						<a href='page2.html' class='trek__href'>2
+						<div class='trek__name'>ОПЛАТА</div>
+						</a>
+					</li>
+					<li class='trek__box'>
+						<a href='page3.html' class='trek__href'>3
+						<div class='trek__name'>ДОСТАВКА</div>
+						</a>
+					</li>
+					<li class='trek__box'>
+						<a href='#' class='trek__href '>4
+						<div class='trek__name'>ЗАВЕРШЕНО</div>
+						</a>
+					</li>
+				</ul>
+		</header>
+		<section>
+			<table class='table'>
+				<tr class='table__head'>
+					<td class='table__column_first'></td>
+					<td class='table__column'>СТОИМОСТЬ</td>
+					<td class='table__column'>ИТОГО</td>
+					<td class='table__column'></td>
+				</tr>
+				<template class='tmp__table_rows'>
+					<tr class='table__rows'>
+						<td class='table__column_first'></td>
+						<td class='table__column'></td>
+						<td class='table__column'></td>
+						<td class='table__column'><img src="img/delete.svg" class="table__delete"></td>
+					</tr>
+				</template>
+			</table>
+		</section>
+		<footer class='footer'>
+			<div class='total'>
+			<span class='total__name'>ИТОГО</span>
+			<div class='total__price'></div>			
+			</div>
+			<!-- УБРАТЬ ССЫЛКУ -->
+			<a href='page2.html'>
+			<input type='button' class='button button__forward' value='ВПЕРЕД'>
+			</a>
+		</footer>
+	</div>	
+</template>
+
+
 
 </body>
 

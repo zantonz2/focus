@@ -14,7 +14,7 @@
   }
 
 
-body, html {
+body, html, .modal__body {
 	color:#9fa3a7;
 	font-size:100%;
 	font-weight: 400;
@@ -951,3 +951,21 @@ background: url(img/education-icon.svg);
 .carusel__arrow_disable {
 	color:green;
 } 
+
+/******MOdal****/
+.modal__bg {
+	position: fixed;
+	top:0;
+	left:0;
+	//z-index: 100;
+	height: 100%;
+	width: 100%;
+	//background: #000000;
+	//opacity: .5;
+}
+
+.modal__div {
+	background: red;
+	height: 10rem;
+	width: 10rem;
+}
