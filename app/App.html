@@ -11,8 +11,8 @@
 		<div class='header__box'>
 			<img class='header__logo' src='img/logo.svg'>
 			<nav class='header__nav'>
-				<a href='#' class='header__href main__hover_red'>ГЛАВНАЯ</a>
-				<a href='#' class='header__href main__hover_red'>КАТАЛОГ ПРИЛОЖЕНИЙ</a>
+				<a href='main.html' class='header__href main__hover_red'>ГЛАВНАЯ</a>
+				<a href='#' class='header__href main__hover_red header__href_disable'>КАТАЛОГ ПРИЛОЖЕНИЙ</a>
 				<a href='#' class='header__href main__hover_red'>О КОМПАНИИ</a>
 			</nav>
 		</div>
@@ -20,83 +20,15 @@
 	<div class='container'>
 		<aside class='container__aside clearfix'>
 			<div class='title title__aside'>Каталог приложений</div>
-			
-				<!--ul class='aside__ul'>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Стандартный пакет</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Новый ЦФТ-Банк</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Cash Management</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Аренда сейфов</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Банковские гарантии</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Казначейство</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Страхование</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Казначейство</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Факторинговое обслуживание</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Переводы средств</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Расчетный центр</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Пластиковые карты</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Финансовый мониторинг</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Депозиты и вклады</a>
-					</li>
-					<li class='aside__list'>
-						<a href='#' class='aside__href main__hover_red main__hover_underline'>Инвестиции</a>
-					</li>
-				</ul-->
 		</aside>
 		<section class='container__content'>
-			<!--div class='title title__size_med'>НОВЫЙ ЦФТ-БАНК</div>
-			<div class='content__box-left'>
-				<time class='time'>09 сентября 2016</time>
-				<p class='text'>Приложение лицензировано в 25 банках
-				Тип Приложения: Базовое
-				Разработчик: ЦФТ
-				Код по каталогу: 1B365001</p>
-				<p class='text'><span class='span__color_darkgrey'>Требования:</span> совместимо с v.14.1, ТЯ v.7.4.0.0 и выше, при наличии лицензии на Проигрыватель форм в web</p>
-			</div>
-			<div class='content__box-right'>
-				<div class='shot shot__size_big shot__baground_shot2'> </div>
-				<input type='button' class='button button__app button_letter-spasing' value='В корзину'>
-			</div-->
-			<!--div class='content__box-bottom'>
-			<div class='title title__size_med'>Основные функции</div>
-			<ul>
-				<li class='content__list'>Выполнение операций по банковским продуктам, используемым клиентом, и оформление новых продуктов банка непосредственно из Единого окна</li>
-				<li class='content__list'>Возможность определения одного банковского продукта для отображения в Едином окне как рекомендуемого (для формирования списка адресно рекомендуемых продуктов необходима лицензия на Приложение Управление целевым маркетингом)</li>
-				<li class='content__list'>Начисление баллов операционным сотрудникам за выполнение операций по банковским продуктам и отображение результатов в Едином окне (для использования гибкой настройки условий начисления баллов необходима лицензия на Приложение Игрофикация)</li>
-			</ul>
-			</div-->
 		</section>
 	</div>
 <script type="text/javascript">
 	catalogList.drawApp(1);
 	catalogList.create();
 	var basket=new basket;
+	//console.log(basket.product);
 	basket.init('.header__box');
 </script>
 
@@ -104,33 +36,33 @@
 	<div class='class'></div>
 </template>
 
-<template class='page1'>
+<template class='tmp__page1'>
 	<div class='wrapper'>
 		<header>
-				<ul class='trek'>
-					<li class='trek__box trek__box_active'>
-						<a href='page1.html' class='trek__href'>1
-						<div class='trek__name'>КОРЗИНА</div>
-						</a>
-					</li>
-					<li class='trek__box'>
-						<a href='page2.html' class='trek__href'>2
-						<div class='trek__name'>ОПЛАТА</div>
-						</a>
-					</li>
-					<li class='trek__box'>
-						<a href='page3.html' class='trek__href'>3
-						<div class='trek__name'>ДОСТАВКА</div>
-						</a>
-					</li>
-					<li class='trek__box'>
-						<a href='#' class='trek__href '>4
-						<div class='trek__name'>ЗАВЕРШЕНО</div>
-						</a>
-					</li>
-				</ul>
+			<ul class='trek'>
+				<li class='trek__box trek__box_active'>
+					<a href='page1.html' class='trek__href'>1
+					<div class='trek__name'>КОРЗИНА</div>
+					</a>
+				</li>
+				<li class='trek__box'>
+					<a href='page2.html' class='trek__href'>2
+					<div class='trek__name'>ОПЛАТА</div>
+					</a>
+				</li>
+				<li class='trek__box'>
+					<a href='page3.html' class='trek__href'>3
+					<div class='trek__name'>ДОСТАВКА</div>
+					</a>
+				</li>
+				<li class='trek__box'>
+					<a href='#' class='trek__href '>4
+					<div class='trek__name'>ЗАВЕРШЕНО</div>
+					</a>
+				</li>
+			</ul>
 		</header>
-		<section>
+		<section class='modal__secion'>
 			<table class='table'>
 				<tr class='table__head'>
 					<td class='table__column_first'></td>
@@ -154,12 +86,80 @@
 			<div class='total__price'></div>			
 			</div>
 			<!-- УБРАТЬ ССЫЛКУ -->
-			<a href='page2.html'>
+			<!--a href='page2.html'-->
 			<input type='button' class='button button__forward' value='ВПЕРЕД'>
-			</a>
+			<!--/a-->
 		</footer>
 	</div>	
 </template>
+
+<!--template class='tmp__page2'>
+	<div class='wrapper'>
+		<header>
+			<ul class='trek'>
+				<li class='trek__box trek__box_enabled'>
+					<a href='page1.html' class='trek__href'>1
+					<div class='trek__name'>КОРЗИНА</div>
+					</a>
+				</li>
+				<li class='trek__box  trek__box_active'>
+					<a href='page2.html' class='trek__href'>2
+					<div class='trek__name'>ОПЛАТА</div>
+					</a>
+				</li>
+				<li class='trek__box'>
+					<a href='page3.html' class='trek__href'>3
+					<div class='trek__name'>ДОСТАВКА</div>
+					</a>
+				</li>
+				<li class='trek__box'>
+					<a href='#' class='trek__href '>4
+					<div class='trek__name'>ЗАВЕРШЕНО</div>
+					</a>
+				</li>
+			</ul>
+		</header-->
+		
+		<template class='page2__section'>
+			<div class='check'>
+				<label class='check__label'>
+					<input type='radio' name='check' class='radio' checked>
+					<div class='radio__view'></div>
+					<div class='radio__value'>КАРТА</div>
+				</label>
+				<label class='check__label'>
+					<input type='radio' name='check' class='radio'>
+					<div class='radio__view'></div>
+					<div class='radio__value'>PAYPAL</div>
+				</label>
+			</div>
+			<div class='card card__front'>
+				<input type='text' placeholder="Номер карты" class='input input__card-number'>
+				<input type='text' placeholder="Месяц" class='input input__card-date input__card-date_position_left'>
+				<input type='text' placeholder="Год" class='input input__card-date input__card-date_position_right'>
+				<input type='text' placeholder="Имя владельца"  class='input input__card-name'>
+				<figure class='card__figure'>
+					<img src="img/master-card.svg" class="card__master">
+					<img src="img/visa.svg" class="card__visa">
+				</figure>
+			</div>
+			<div class='card card__outside'>
+				<div class='card__magnit'></div>
+				<input type='text' placeholder="CVV"  class='input input__card-cvv'>
+				<span class='card__text-box'>Код на обратной стороне</span>
+			</div>
+		</template>
+
+		<template class='page2__footer'>
+			<input type='button' class='button button__back' value='Вернуться назад'>
+			<!-- УБРАТЬ ССЫЛКУ -->
+			<!--a href='page3.html'-->
+			<input type='button' class='button button__forward button_letter-spasing' value='Оплатить'>
+			<!--/a-->
+		</template>
+	<!--/div>
+</template-->
+
 
 
 
