@@ -168,7 +168,7 @@ a {
 
 
 /* Таблица-----------------------------------*/
-.modal__secion{
+.page1__section{
 	max-height: 30rem;
 	overflow-y: auto;
 }
@@ -194,6 +194,7 @@ a {
 .table__column_first {
 	font-size:1.375rem;
 	color: #2c2c2c;
+	padding-left: 1rem;
 }
 
 .table__delete {

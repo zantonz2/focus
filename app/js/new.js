@@ -346,7 +346,7 @@ function basket() {
 
 	this.init=function(blok){
 		
-		this.product=storageRead();
+		if (storageRead()) this.product=storageRead();
 		
 		if (document.readyState === "complete") {
 			createBasket(blok);
@@ -404,48 +404,45 @@ function basket() {
 /*^^^^^^^^^^^^^^^end bascket^^^^^^^^^^^^^^^^^^^*/
 
 
-function findButton() {
-	var forward=document.querySelector('.page1 .button__forward');
-	console.log(forward);
-	forward.onclick=changePage.page2;
-}
-
 var modal=(function(){
 	var createBlock=carusel.createBlock;
 	function page1(product) {
-		var tmp=document.querySelector('.tmp__page1');
-		var clonePage1=tmp.content.cloneNode(true);
-			var row=clonePage1.querySelector('.tmp__table_rows');
-			for (var i = 0; i < product.length; i++) {
-				var cloneRow=row.content.cloneNode(true);
-				var cell=cloneRow.querySelectorAll('td');
-				cell[0].textContent=product[i].title;
-				cell[1].textContent=product[i].price/100;
-				cell[2].textContent=product[i].price/100;
-
-				clonePage1.querySelector('.table').appendChild(cloneRow);
-				cell[3].onclick=(function(id){
-									return function(){
-										basket.delProduct(id);
-										this.parentNode.parentNode.removeChild(this.parentNode);
-										insertTotal(basket.total());
-										if (!basket.total()) popUpDelete();
-										if (document.querySelector('.container__content').data===id) {
-											document.querySelector('.button__app').className='button button__app button_letter-spasing';
-										}
+		
+		var page1=cloneTmp('.page1__tmp');
+		var header=cloneTmp('.modal__header');
+		var label=header.querySelectorAll('.trek__box');
+		label[0].className+=' trek__box_active';
+		page1.querySelector('header').appendChild(header);
+		
+		var row=page1.querySelector('.tmp__table_rows');
+		for (var i = 0; i < product.length; i++) {
+			var cloneRow=cloneTmp('.tmp__table_rows');
+			var cell=cloneRow.querySelectorAll('td');
+			cell[0].textContent=product[i].title;
+			cell[1].textContent=product[i].price/100;
+			cell[2].textContent=product[i].price/100;
+			page1.querySelector('.table').appendChild(cloneRow);
+			cell[3].onclick=(function(id){
+								return function(){
+									basket.delProduct(id);
+									this.parentNode.parentNode.removeChild(this.parentNode);
+									insertTotal(basket.total());
+									if (!basket.total()) popUpDelete();
+									if (document.querySelector('.container__content').data===id) {
+										document.querySelector('.button__app').className='button button__app button_letter-spasing';
 									}
-								})(product[i].id);
-				
-			}
+								}
+							})(product[i].id);
+		}
 		insertTotal(basket.total()); // cent
-		var btnForward=clonePage1.querySelector('.button__forward');
+		var btnForward=page1.querySelector('.button__forward');
 		btnForward.onclick=page2;
+		popUpCreate().parentNode.appendChild(page1);
 		//console.log(btnForward);
-		popUpCreate().parentNode.appendChild(clonePage1);
 
 		
 		function insertTotal(total) {
-			var totalPrice=clonePage1.querySelector('.total__price')||document.querySelector('.total__price');
+			var totalPrice=page1.querySelector('.total__price')||document.querySelector('.total__price');
 			//console.log(totalPrice);
 			var totalInt=Math.floor(total / 100);
 			var totalFloor=total-totalInt*100;
@@ -458,17 +455,15 @@ var modal=(function(){
 	};
 
 	function page2() {
-		var tmp=cloneTmp('.page2__section');
-		var modalCection=document.querySelector('.modal__secion');
-		modalCection.innerHTML='';
-		modalCection.appendChild(tmp);
-		modalCection.className='modal__secion2';
-		
-		var tmp=cloneTmp('.page2__footer');
-		var footer=document.querySelector('.footer')
-		footer.innerHTML='';
-		footer.appendChild(tmp);
-		//console.log(modalBg);
+		popUpDelete('wrapper');
+		var parent=document.querySelector('.modal__bg').parentNode;
+		var page2=cloneTmp('.page2__tmp');
+		var header=cloneTmp('.modal__header');
+		var label=header.querySelectorAll('.trek__box');
+		label[1].className+=' trek__box_active';
+		label[0].className='trek__box trek__box_enabled';
+		page2.querySelector('header').appendChild(header);
+		parent.appendChild(page2);
 	};
 
 	function page3() {
@@ -480,6 +475,7 @@ var modal=(function(){
 	}
 
 	function popUpCreate(){
+		if (document.querySelector('.modal__bg')) popUpDelete();
 		var modalBg=createBlock('div', 'modal__bg');
 		var body=document.querySelector('body');
 		body.appendChild(modalBg);
@@ -488,15 +484,18 @@ var modal=(function(){
 	};
 
 	function popUpDelete() {
-		elem=document.querySelector('.modal__bg');
-		elem.parentElement.removeChild(elem);
-		elem=document.querySelector('.wrapper');
+		if (arguments.length===0) {
+			var elem=document.querySelector('.modal__bg');
+			elem.parentElement.removeChild(elem);
+		}
+		var elem=document.querySelector('.wrapper');
 		elem.parentElement.removeChild(elem);
 	}
 
 	function cloneTmp(classTmp) {
 		var tmp=document.querySelector(classTmp);
-		return tmp.content.cloneNode(true);
+		var clone=tmp.content.cloneNode(true);
+		return clone;
 	}
 
 	return {
