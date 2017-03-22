@@ -24,11 +24,12 @@
 		<section class='container__content'>
 		</section>
 	</div>
+
+	
 <script type="text/javascript">
 	catalogList.drawApp(1);
 	catalogList.create();
 	var basket=new basket;
-	//console.log(basket.product);
 	basket.init('.header__box');
 </script>
 
@@ -76,17 +77,17 @@
 				</a>
 			</li>
 			<li class='trek__box'>
-				<a onclick="modal.page2" class='trek__href'>2
+				<a onclick="modal.page2(basket.product)" class='trek__href'>2
 				<div class='trek__name'>ОПЛАТА</div>
 				</a>
 			</li>
 			<li class='trek__box'>
-				<a onclick="modal.page3" class='trek__href'>3
+				<a onclick="modal.page3(basket.product)" class='trek__href'>3
 				<div class='trek__name'>ДОСТАВКА</div>
 				</a>
 			</li>
 			<li class='trek__box'>
-				<a href='#' class='trek__href '>4
+				<a  class='trek__href '>4
 				<div class='trek__name'>ЗАВЕРШЕНО</div>
 				</a>
 			</li>
@@ -127,14 +128,52 @@
 			</section>
 			<footer class='footer'>
 				<input type='button' class='button button__back' value='Вернуться назад'>
-				<!-- УБРАТЬ ССЫЛКУ -->
-				<a href='page3.html'>
 				<input type='button' class='button button__forward button_letter-spasing' value='Оплатить'>
-				</a>
 			</footer>
 		</div>	
 	</template>
+	
+	<template class="page3__tmp">
+		<div class="wrapper">
+			<header></header>
+			<section>
+				<div class='contact'>
+					<span class='contact__head'>КОНТАКТНАЯ ИНФОРМАЦИЯ</span>
+					<input type='text' placeholder="Фамилия" class='input input__contact_left'>
+					<input type='text' placeholder="Имя" class='input input__contact_right'>
+					<input type='text' placeholder="Телефон" class='input input__contact_left'>
+					<input type='text' placeholder="E-mail" class='input input__contact_right'>
+				</div>
+			</section>
+			<footer class='footer'>
+				<input type='button' class='button button__forward button_letter-spasing' value='ЗАВЕРШИТЬ'>
+			</footer>
+		</div>
+	</template>
 
+	<template class="page4__tmp">
+		<div class="wrapper">
+			<header></header>
+			<section class=final>
+				<div class='final__ico'>
+				</div>
+				<span class='final__text-box final__text-box_big'>Поздравляем!<br>Ваш заказ был принят!</span>
+				<span class='final__text-box final__text-box_small'> В ближайшее время с Вами свяжется наш менеджер 
+					<br>для уточнения данных по заказу
+					<br>и расскажет что же ожидает вас в будущем.</span>
+			</section>
+			<footer class='footer'>
+				<input type='button' class='button button__final button_letter-spasing' value='Закрыть'>
+			</footer>
+		</div>
+	</template>
+
+	<template class="timeout__tmp">
+		<div class="timeout">
+			<div class="timeout__bg"></div>
+			<div class="timeout__loading"></div>
+		</div>
+	</template>
 
 </body>
 

@@ -995,3 +995,31 @@ background: url(img/education-icon.svg);
 	height: 10rem;
 	width: 10rem;
 }
+
+/**** for timeout ****/
+.timeout {
+	position: fixed;
+	top:0;
+	left:0;
+	z-index: 500;
+	height: 100%;
+	width: 100%;
+}
+.timeout__bg {
+	position: fixed;
+	top:0;
+	left:0;
+	height: 100%;
+	width: 100%;
+	background: #ffffff;
+	opacity: .5;
+}
+.timeout__loading {
+	z-index: 505;
+	position: relative;
+	margin:0rem auto;
+	background: url(img/loading.svg);
+	width:40rem;
+	height:40rem;
+
+}
