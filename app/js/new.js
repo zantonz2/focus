@@ -15,13 +15,13 @@ var obj_compliance = {
 "2ca44ad5-b06b-41e8-912d-fd7000390c49":"shot__baground_shot1"
 };
 /******************START*********************/
-//(function(){
-//	window.addEventListener( "DOMContentLoaded", function(){
-//	catalogList.drawApp(1);
-//	catalogList.create();
-//	var basket=new basket;
-//	basket.init('.header__box');
-//	});
+(function(){
+	window.addEventListener( "DOMContentLoaded", function(){
+	var basket=new Basket();
+	catalogList.drawApp(1);
+	catalogList.create();
+	basket.init('.header__box');
+	});
 
 	var carusel=(function(){
 
@@ -281,13 +281,14 @@ var obj_compliance = {
 		};
 
 		function buttonAppDisable(elem, id){
+			/*console.log(basket);
 			if (basket.product.length>=0) {
 				for (var i = 0; i < basket.product.length; i++) {
 					if (basket.product[i].id===id) {
 						elem.className+=' button__app_disable';
 					}
 				}
-			}
+			}*/
 		};
 
 		return {
@@ -311,7 +312,8 @@ var obj_compliance = {
 
 	/*-----------------------BASKET------------------------------*/
 
-	function basket() {
+	function Basket() {
+		
 		this.product=[];
 		this.add=function(result) {
 			//console.log(this.product.length);
@@ -331,17 +333,17 @@ var obj_compliance = {
 			
 			if (storageRead()) this.product=storageRead();
 			
-			if (document.readyState === "complete") {
+			//if (document.readyState === "complete") {
 				createBasket(blok);
-			} else {
-				window.addEventListener( "DOMContentLoaded", createBasket);
-			}
+			//} else {
+			//	window.addEventListener( "DOMContentLoaded", createBasket);
+			//}
 		
 			function createBasket(){
 				var elem=document.querySelector(blok);
 				var div=document.createElement(div);
 				div.textContent='Корзина';
-				div.onclick=basketClick.bind(basket);			
+				div.onclick=basketClick;//.bind(basket);			
 				elem.appendChild(div);
 				div.style.cursor='pointer';
 			}
@@ -532,4 +534,4 @@ var obj_compliance = {
 	}());
 
 
-//}());
+}());
