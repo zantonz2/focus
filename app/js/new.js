@@ -18,31 +18,14 @@ var obj_compliance = {
 (function(){
 	var basket=new Basket; 
 	window.addEventListener("DOMContentLoaded", function(){
+		catalogList.create;
 		catalogList.drawApp(1);
-		catalogList.create();
 		basket.init('.header__box');
 	});
-/*********copy past Carusel************ наверное лучше, чем подключать*/
-	function addDate(time) {
-		var option={
-			day: 'numeric',
-			month: 'long',
-			year: 'numeric'
-		};
-		var date=new Date(time);
-		return date.toLocaleString("ru",option);
-	}
-
-	function createBlock(tag, cl) {
-		var div=document.createElement(tag);
-		div.className=cl;
-		return div;
-	};
-/*^^^^^^^^^^^^^copy past Carusel^^^^^^^^^^^^^^*/
 
 	var catalogList=(function(){
-		//var createBlock=carusel.createBlock;
-		//var addDate=carusel.addDate;
+		var createBlock=carusel.createBlock;
+		var addDate=carusel.addDate;
 
 		function fillBox(block, content,f) {
 			var length=content.length;
@@ -162,8 +145,22 @@ var obj_compliance = {
 			}
 		};
 
+		function renderAside(responseText){
+			var result=JSON.parse(responseText);
+			fillBox('.container__aside', result, createListASide);
+		};
+
+		function errorLoad(responseText){
+			console.log('Произошла ошибка при загрузке данных '+responseText);
+		};
+
 		return {
-			create:function(){
+			create:carusel.promisLoad('api/apps_list.json')
+					.then(
+						renderAside,
+						errorLoad 
+					),
+				/*function(){
 				var xhr = new XMLHttpRequest();
 				xhr.open('GET', 'api/apps_list.json', true);
 				xhr.send();
@@ -175,7 +172,7 @@ var obj_compliance = {
 						fillBox('.container__aside', result, createListASide);
 					}
 				}
-			},
+			},*/
 			drawApp:drawApp,
 			buttonAppDisable:buttonAppDisable,
 		}
@@ -209,7 +206,6 @@ var obj_compliance = {
 			//} else {
 			//	window.addEventListener( "DOMContentLoaded", createBasket);
 			//}
-		
 			//function createBasket(){
 				var elem=document.querySelector(blok);
 				var div=document.createElement(div);
@@ -242,7 +238,7 @@ var obj_compliance = {
 			this.product=[];
 			storageRecord(this.product);
 		}
-		var self=this;
+		//var self=this;
 		function basketClick(){
 			console.log(this);
 			if (this.total()) modal.page1(this.product);
@@ -250,7 +246,6 @@ var obj_compliance = {
 
 		function storageRead() {
 			if (localStorage.getItem('bascketProduct')===null) {
-	
 				return false
 			} else {
 				var product=JSON.parse(localStorage.getItem('bascketProduct'));
@@ -266,7 +261,7 @@ var obj_compliance = {
 
 
 	var modal=(function(){
-		//var createBlock=carusel.createBlock;
+		var createBlock=carusel.createBlock;
 		function page1(product) {
 			
 			var page1=cloneTmp('.page1__tmp');
@@ -325,14 +320,17 @@ var obj_compliance = {
 			label[0].className='trek__box trek__box_enabled';
 			page2.querySelector('header').appendChild(header);
 			var btnForward=page2.querySelector('.button__forward');
-			btnForward.onclick=page3;
-			var btnForward=page2.querySelector('.button__back');
-			btnForward.onclick=page1;
+			btnForward.onclick=function(){pageTime(page3)};
+			var btnBack=page2.querySelector('.button__back');
+			btnBack.onclick=page1;
 			parent.appendChild(page2);
+
 		};
 
 		function page3() {
 			popUpDelete('wrapper');
+			var timeout=document.querySelector('.timeout');
+			if (timeout) timeout.parentNode.removeChild(timeout);
 			var parent=document.querySelector('.modal__bg').parentNode;
 			var page3=cloneTmp('.page3__tmp');
 			var header=cloneTmp('.modal__header');
@@ -342,15 +340,16 @@ var obj_compliance = {
 			label[0].className='trek__box trek__box_enabled';
 			page3.querySelector('header').appendChild(header);
 			var btnForward=page3.querySelector('.button__forward');
-			btnForward.onclick=page4time;
+			btnForward.onclick=function(){pageTime(page4)};
 			parent.appendChild(page3);
-			function page4time() {
-				var timeout=Math.random()*12000+3000;
-				setTimeout(page4, timeout);
-				timeout=cloneTmp('.timeout__tmp');
-				var body=document.querySelector('body');
-				body.appendChild(timeout);
-			}
+			
+		}
+		function pageTime(page) {
+			var timeout=Math.random()*12000+3000;
+			setTimeout(page, timeout);
+			timeout=cloneTmp('.timeout__tmp');
+			var body=document.querySelector('body');
+			body.appendChild(timeout);
 		}
 
 		function page4() {
@@ -405,5 +404,23 @@ var obj_compliance = {
 			page3:page3,
 		}
 	}());
+
+	/*----------PROMISES-----------------*/
+	/*function loadData(url) {
+		return new Promise(function(load,error) {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', url, true);
+			xhr.send();
+			xhr.onreadystatechange=function(e) {
+				if (xhr.readyState===XMLHttpRequest.DONE) {
+					if (xhr.status===200) {
+						return load(xhr.responseText);
+					} else {
+						return error(xhr.status); 
+					}
+				}
+			}
+		});
+	};*/
 	
 }());
