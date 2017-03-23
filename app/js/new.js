@@ -22,156 +22,27 @@ var obj_compliance = {
 		catalogList.create();
 		basket.init('.header__box');
 	});
-
-	var carusel=(function(){
-
-		function CaruselFillBox(block, content, f) {
-			var caruselPoint=document.querySelectorAll('.carusel__point');
-			for (var i=0; i<caruselPoint.length; i++) {
-				if (caruselPoint[i].className==='carusel__point carusel__point_active') break;
-			}
-			i=(i<1)?1:i;
-			i=(i===(caruselPoint.length-1))?(caruselPoint.length-2):i;
-			var rowCol3=document.querySelector(block);
-			for (var j=0; j<3; j++) {
-				f(rowCol3,content,i-1+j);
-			}
+/*********copy past Carusel************ наверное лучше, чем подключать*/
+	function addDate(time) {
+		var option={
+			day: 'numeric',
+			month: 'long',
+			year: 'numeric'
 		};
+		var date=new Date(time);
+		return date.toLocaleString("ru",option);
+	}
 
-		function createBlock(tag, cl) {
-			var div=document.createElement(tag);
-			div.className=cl;
-			return div;
-		};
-
-		function clearBox(block) {
-			var rowCol3=document.querySelector(block);
-			rowCol3.innerHTML='';
-		};
-
-				
-		function createBoxProduct(elem, content, i){
-			if (typeof content[i] !== 'undefined') {
-				var Col3=createBlock('div','col3');
-				var fig=createBlock('figure','figure');
-				var shot=createBlock('div','shot shot__size_med '+obj_compliance[content[i].guid]);
-				var figcap=createBlock('figcaption', 'figcaption main__hover_red');
-				figcap.innerHTML=content[i].title.toUpperCase();;
-				var time=createBlock('time','time');
-				time.innerHTML= addDate(content[i].lastUpdate*1000);
-				fig=Col3.appendChild(fig);
-				fig.appendChild(shot);
-				figcap=fig.appendChild(figcap);
-				figcap.appendChild(time);
-				elem.appendChild(Col3);
-					
-			}
-		};
-
-		function addDate(time) {
-			var option={
-				day: 'numeric',
-				month: 'long',
-				year: 'numeric'
-			};
-			var date=new Date(time);
-			return date.toLocaleString("ru",option);
-		}
-		
-		function createCarusel(inBlock, content){
-			var carusel=document.querySelector(inBlock);
-			//drav point
-			var ul=createBlock('ul','');
-			for (var i = 0; i < content.length; i++) {
-				var li=createBlock('li','carusel__point');
-				ul.appendChild(li);
-			}
-
-			if (!ul.querySelector('.carusel__point_active')) {
-				//console.log(ul.querySelector('.carusel__point_active'));
-				var point=ul.querySelectorAll('.carusel__point');
-				point[3].className+=' carusel__point_active';
-			}
-			ul.onclick=clickPoint;
-			carusel.appendChild(ul);
-			
-			//draw arrows
-			var caruselArrowLeft=createBlock('div','carusel__arrow carusel__arrow_left');
-			caruselArrowLeft.innerHTML='<';
-			carusel.appendChild(caruselArrowLeft);
-			caruselArrowLeft.onclick=function(){clickLR('left', content)};
-			var caruselArrowRight=createBlock('div','carusel__arrow carusel__arrow_right');
-			caruselArrowRight.innerHTML='>';
-			carusel.appendChild(caruselArrowRight);
-			caruselArrowRight.onclick=function(){clickLR('right', content)};
-			
-			function clickLR(ev,content) {
-				var caruselPoint=document.querySelectorAll('.carusel__point');
-				//console.log(ev); 
-				var cl=ev.indexOf('right');
-				var length=caruselPoint.length
-				for (var i = 0; i<length;  i++) {
-					if (caruselPoint[i].className==='carusel__point carusel__point_active') break;
-				}
-				caruselPoint[i].className='carusel__point';
-				if (~cl) {
-					if (i<length-1) {
-						caruselPoint[i+1].className='carusel__point carusel__point_active';
-					} else {
-						caruselPoint[length-1].className='carusel__point carusel__point_active'
-					}
-				}else{
-					if (i>0) {
-					caruselPoint[i-1].className='carusel__point carusel__point_active';
-					} else {
-					caruselPoint[0].className='carusel__point carusel__point_active'
-					}
-				}
-				clearBox('.row-3col');
-				CaruselFillBox('.row-3col', content ,createBoxProduct);
-			};
-
-			function clickPoint(ev) {
-				//console.log(ev.target);
-				var caruselPoint=document.querySelectorAll('.carusel__point');
-				var length=caruselPoint.length
-				for (var i = 0; i<length;  i++) {
-					caruselPoint[i].className='carusel__point';
-					if (ev.target===caruselPoint[i]) {
-						var j=i;
-					};
-				}
-				caruselPoint[j].className='carusel__point carusel__point_active';
-				clearBox('.row-3col');
-				CaruselFillBox('.row-3col', content ,createBoxProduct);	
-			}
-		}
-
-		return {
-			create:function(){
-				var xhr = new XMLHttpRequest();
-				xhr.open('GET', 'api/app_packages.json', true);
-				xhr.send();
-				xhr.onreadystatechange=function(e) {
-					if (xhr.readyState===XMLHttpRequest.DONE) {
-						console.log(xhr.responseText);
-						var result=JSON.parse(xhr.responseText);
-						//console.log('result='+result);
-						CaruselFillBox('.row-3col', result, createBoxProduct);
-						createCarusel('.carusel',result);
-					}
-				}
-			},
-			createBlock:createBlock,
-			addDate:addDate,
-		}
-	}());
-
-
+	function createBlock(tag, cl) {
+		var div=document.createElement(tag);
+		div.className=cl;
+		return div;
+	};
+/*^^^^^^^^^^^^^copy past Carusel^^^^^^^^^^^^^^*/
 
 	var catalogList=(function(){
-		var createBlock=carusel.createBlock;
-		var addDate=carusel.addDate;
+		//var createBlock=carusel.createBlock;
+		//var addDate=carusel.addDate;
 
 		function fillBox(block, content,f) {
 			var length=content.length;
@@ -379,6 +250,7 @@ var obj_compliance = {
 
 		function storageRead() {
 			if (localStorage.getItem('bascketProduct')===null) {
+	
 				return false
 			} else {
 				var product=JSON.parse(localStorage.getItem('bascketProduct'));
@@ -394,7 +266,7 @@ var obj_compliance = {
 
 
 	var modal=(function(){
-		var createBlock=carusel.createBlock;
+		//var createBlock=carusel.createBlock;
 		function page1(product) {
 			
 			var page1=cloneTmp('.page1__tmp');
